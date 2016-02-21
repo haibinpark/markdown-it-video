@@ -1,3 +1,10 @@
+Coverage. Youku from ID
+.
+@[youku](http://v.youku.com/v_show/id_XMTQ3NjIwMTkzNg==.html?from=y1.3-dv-2016new-239-23143.225983-225963.3-4#paction)
+.
+<p><iframe height=498 width=510 src="http://player.youku.com/embed/XMTQ3NjIwMTkzNg==" frameborder=0 allowfullscreen></iframe></p>
+.
+
 Coverage. Youtube from ID
 .
 @[youtube](dQw4w9WgXcQ)
@@ -7,7 +14,7 @@ Coverage. Youtube from ID
 .
 @[youtube](x) a
 .
-<p><iframe id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/x" frameborder="0"/> a</p>
+<p><iframe id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/x" frameborder="0"/></p>
 .
 .
 a @[youtube](x)

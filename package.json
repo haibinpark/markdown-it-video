@@ -1,5 +1,5 @@
 {
-  "name": "markdown-it-video",
+  "name": "markdown-it-video-ext",
   "version": "0.1.2",
   "description": "Markdown-it plugin to embed a hosted videos",
   "main": "index.js",

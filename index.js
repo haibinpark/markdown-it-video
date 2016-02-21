@@ -4,26 +4,38 @@
 'use strict';
 
 // The youtube_parser is from http://stackoverflow.com/a/8260383
-function youtube_parser(url){
+function youtube_parser(url) {
     var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
     var match = url.match(regExp);
-    if (match&&match[7].length==11){
+    if (match && match[7].length == 11) {
         return match[7];
-    } else{
+    } else {
         return url;
     }
 }
 
+
 // The vimeo_parser is from http://stackoverflow.com/a/13286930
-function vimeo_parser(url){
+function vimeo_parser(url) {
     var regExp = /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/;
     var match = url.match(regExp);
-    if (match){
+    if (match) {
         return match[3];
-    } else{
+    } else {
         return url;
     }
 }
+
+function youku_parser(url) {
+    var regExp = /http?:\/\/(?:v\.)?youku.com\/v_show\/id_([\w+]*(.*?)[\s]*)?.*/;
+    var match = url.match(regExp);
+    if (match) {
+        return match[1];
+    } else {
+        return url;
+    }
+}
+
 
 function video_embed(md) {
     function video_return(state, silent) {
@@ -38,8 +50,8 @@ function video_embed(md) {
             oldPos = state.pos,
             max = state.posMax;
 
-        // When we add more services, (youtube) might be (youtube|vimeo|vine), for example
-        var EMBED_REGEX = /@\[(youtube|vimeo)\]\([\s]*(.*?)[\s]*[\)]/im;
+        // When we add more services, (youtube) might be (youtube|vimeo|youku), for example
+        var EMBED_REGEX = /@\[(youtube|vimeo|youku)\]\([\s]*(.*?)[\s]*[\)]/im;
 
 
         if (state.src.charCodeAt(state.pos) !== 0x40/* @ */) {
@@ -51,11 +63,11 @@ function video_embed(md) {
 
         var match = EMBED_REGEX.exec(state.src);
 
-        if(!match){
+        if (!match) {
             return false;
         }
 
-        if (match.length < 3){
+        if (match.length < 3) {
             return false;
         }
 
@@ -66,6 +78,8 @@ function video_embed(md) {
             videoID = youtube_parser(videoID);
         } else if (service.toLowerCase() == 'vimeo') {
             videoID = vimeo_parser(videoID);
+        } else if (service.toLowerCase() == 'youku'){
+            videoID = youku_parser(videoID);
         }
 
         // If the videoID field is empty, regex currently make it the close parenthesis.
@@ -121,6 +135,12 @@ function tokenize_vimeo(videoID) {
     return embedStart + videoID + embedEnd;
 }
 
+function tokenize_youku(videoID) {
+    var embedStart = '<iframe height=498 width=510 src="http://player.youku.com/embed/';
+    var embedEnd = '==" frameborder=0 allowfullscreen></iframe>';
+    return embedStart + videoID + embedEnd;
+}
+
 function tokenize_video(md) {
     function tokenize_return(tokens, idx, options, env, self) {
         var videoID = md.utils.escapeHtml(tokens[idx].videoID);
@@ -133,8 +153,10 @@ function tokenize_video(md) {
             return tokenize_youtube(videoID);
         } else if (service.toLowerCase() === 'vimeo') {
             return tokenize_vimeo(videoID);
-        } else{
-            return('');
+        } else if (service.toLowerCase() === 'youku') {
+            return tokenize_youku(videoID)
+        } else {
+            return ('');
         }
 
     }
