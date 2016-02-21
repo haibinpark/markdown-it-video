@@ -10,10 +10,10 @@
     "type": "git",
     "url": "https://github.com/haibinpark/markdown-it-video-ext"
   },
-  "author": "brianjgeiger",
+  "author": "haibinpark",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/brianjgeiger/markdown-it-video/issues"
+    "url": "https://github.com/haibinpark/markdown-it-video-ext/issues"
   },
   "homepage": "https://github.com/haibinpark/markdown-it-video-ext",
   "keywords": [
