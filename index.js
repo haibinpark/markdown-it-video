@@ -117,6 +117,7 @@ function video_embed(md) {
 
         state.pos = pos;
         state.posMax = state.tokens.length;
+        console.log("is true!!!");
         return true;
     }
 

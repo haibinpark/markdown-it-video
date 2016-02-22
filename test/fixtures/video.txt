@@ -4,7 +4,12 @@ Coverage. Youku from ID
 .
 <p><iframe height=498 width=510 src="http://player.youku.com/embed/XMTQ3NjIwMTkzNg==" frameborder=0 allowfullscreen></iframe></p>
 .
-
+.
+@[youku](XMTQ3NjIwMTkzNg)
+.
+<p><iframe height=498 width=510 src="http://player.youku.com/embed/XMTQ3NjIwMTkzNg==" frameborder=0 allowfullscreen></iframe></p>
+.
+s
 Coverage. Youtube from ID
 .
 @[youtube](dQw4w9WgXcQ)
